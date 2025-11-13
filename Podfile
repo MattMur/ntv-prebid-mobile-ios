@@ -1,6 +1,6 @@
 platform :ios, '12.0'
 
-workspace 'PrebidMobile'
+workspace 'NativoPrebidSDK'
 
 project 'PrebidMobile.xcodeproj'
 project 'EventHandlers/EventHandlers.xcodeproj'

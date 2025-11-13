@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "NativoPrebidSDK"
   s.version      = "3.1.1"
-  s.summary      = "PrebidMobile is a lightweight framework that integrates directly with Prebid Server."
+  s.summary      = "Nativo's PrebidMobile wrapper is a lightweight framework that integrates directly with Nativo and Prebid Server."
 
   s.description  = <<-DESC
     Prebid-Mobile-SDK is a lightweight framework that integrates directly with Prebid Server to increase yield for publishers by adding more mobile buyers."
@@ -53,16 +53,21 @@ Pod::Spec.new do |s|
                  ]
   s.weak_frameworks  = [ 'AdSupport', 'StoreKit', 'WebKit' ]
 
-  # Support previous intagration
-  s.default_subspec = 'core'
 
+  s.default_subspec = ['core']
   s.subspec 'core' do |core|
-    core.source_files = 'PrebidMobile/**/*.{h,m,swift}'
+    core.source_files = ['PrebidMobile/**/*.{h,m,swift}', 'NativoPrebidRenderer/']
     
     core.private_header_files = [
       'PrebidMobile/Objc/PrivateHeaders/*.h'
     ]
     core.vendored_frameworks = 'Frameworks/OMSDK_Prebidorg.xcframework'
+  end
+
+  # Separate subspec for renderer with PrebidMobile dependency
+  s.subspec 'renderer' do |renderer|
+    renderer.source_files = 'NativoPrebidRenderer/'
+    renderer.dependency 'PrebidMobile'
   end
 
   s.pod_target_xcconfig = {

@@ -13,12 +13,6 @@
   limitations under the License.
  */
 
-//
-//  NtvPrebidRender.swift
-//  NtvPrebidRender
-//
-//  Created on 10/28/25.
-//
 
 import UIKit
 #if canImport(PrebidMobile)
@@ -28,14 +22,13 @@ import PrebidMobile
 /**
  Nativo's custom Prebid renderer
  */
-public class NtvPrebidRenderer: NSObject, @MainActor PrebidMobilePluginRenderer, DisplayViewLoadingDelegate {
+public class NativoPrebidRenderer: NSObject, PrebidMobilePluginRenderer, DisplayViewLoadingDelegate {
 
     public let name = "NativoRenderer"
     public let version = "1.0.0"
     public var data: [String: Any]?
     var bannerLoadingDelegate: DisplayViewLoadingDelegate?
     
-    @MainActor
     public func createBannerView(
         with frame: CGRect,
         bid: Bid,
@@ -57,7 +50,6 @@ public class NtvPrebidRenderer: NSObject, @MainActor PrebidMobilePluginRenderer,
         return displayView
     }
     
-    @MainActor
     public func createInterstitialController(
         bid: Bid,
         adConfiguration: AdUnitConfig,
@@ -90,7 +82,7 @@ public class NtvPrebidRenderer: NSObject, @MainActor PrebidMobilePluginRenderer,
                 ])
             } else {
                 let error = NSError(
-                    domain: "NtvPrebidRenderer",
+                    domain: "NativoPrebidRenderer",
                     code: 1,
                     userInfo: [NSLocalizedDescriptionKey: "Nativo renderer expected a subview on DisplayView, but none was found."]
                 )
