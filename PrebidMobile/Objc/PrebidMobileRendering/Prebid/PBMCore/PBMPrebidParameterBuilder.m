@@ -168,6 +168,9 @@
         nextImp.extPrebid.storedAuctionResponse = Prebid.shared.storedAuctionResponse;
         nextImp.extGPID = self.adConfiguration.gpid;
         
+        // Nativo - Add tagid to imp for placement mapping
+        nextImp.tagid = self.adConfiguration.configId;
+        
         nextImp.extPrebid.isRewardedInventory = self.adConfiguration.adConfiguration.isRewarded;
         if (self.adConfiguration.adConfiguration.isRewarded) {
             nextImp.rewarded = @(1);
@@ -291,7 +294,7 @@
         }
         
         if (!appExtPrebid.source) {
-            appExtPrebid.source = @"prebid-mobile";
+            appExtPrebid.source = @"nativo-prebid-sdk";
         }
         
         if (!appExtPrebid.version) {
