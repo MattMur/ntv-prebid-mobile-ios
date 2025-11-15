@@ -42,6 +42,8 @@
 		38F03B272576421400E026A2 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F03B262576421400E026A2 /* CacheManagerTests.swift */; };
 		38F03B332576624C00E026A2 /* TrackerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F03B322576624C00E026A2 /* TrackerManagerTests.swift */; };
 		3A0541B12EB97C000043533E /* NativoPrebidRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0541AF2EB97C000043533E /* NativoPrebidRenderer.swift */; };
+		3AFDF6452EC808D600FC7AA2 /* NativoBidRequester.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AFDF6422EC808D600FC7AA2 /* NativoBidRequester.h */; };
+		3AFDF6462EC808D600FC7AA2 /* NativoBidRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFDF6432EC808D600FC7AA2 /* NativoBidRequester.m */; };
 		3CD0ADEE2C5125E9006CDA6B /* PluginRegisterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0ADED2C5125E9006CDA6B /* PluginRegisterTest.swift */; };
 		3CD0ADF32C512E5E006CDA6B /* RawSampleCustomRendererBidFabricator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0ADF22C512E5E006CDA6B /* RawSampleCustomRendererBidFabricator.swift */; };
 		47D9A008EA5B9DF894E98CA2 /* ACJRefreshTest_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 47D9AF9402144C399D6D4A1C /* ACJRefreshTest_0.json */; };
@@ -895,6 +897,8 @@
 		38F03B262576421400E026A2 /* CacheManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
 		38F03B322576624C00E026A2 /* TrackerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerManagerTests.swift; sourceTree = "<group>"; };
 		3A0541AF2EB97C000043533E /* NativoPrebidRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativoPrebidRenderer.swift; sourceTree = "<group>"; };
+		3AFDF6422EC808D600FC7AA2 /* NativoBidRequester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativoBidRequester.h; sourceTree = "<group>"; };
+		3AFDF6432EC808D600FC7AA2 /* NativoBidRequester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativoBidRequester.m; sourceTree = "<group>"; };
 		3CD0ADED2C5125E9006CDA6B /* PluginRegisterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginRegisterTest.swift; sourceTree = "<group>"; };
 		3CD0ADF22C512E5E006CDA6B /* RawSampleCustomRendererBidFabricator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawSampleCustomRendererBidFabricator.swift; sourceTree = "<group>"; };
 		47D9A0396ABC8830B365D7DD /* MockLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
@@ -1750,6 +1754,22 @@
 			path = NativoPrebidRenderer;
 			sourceTree = "<group>";
 		};
+		3AFDF6412EC8078800FC7AA2 /* Nativo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Nativo;
+			sourceTree = "<group>";
+		};
+		3AFDF6442EC808D600FC7AA2 /* Nativo */ = {
+			isa = PBXGroup;
+			children = (
+				3AFDF6422EC808D600FC7AA2 /* NativoBidRequester.h */,
+				3AFDF6432EC808D600FC7AA2 /* NativoBidRequester.m */,
+			);
+			path = Nativo;
+			sourceTree = "<group>";
+		};
 		47D9A035F43D4DF6250D694F /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2536,6 +2556,7 @@
 		5AF5EA522E13580F002D80C1 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
+				3AFDF6442EC808D600FC7AA2 /* Nativo */,
 				5AF5E9252E13580F002D80C1 /* ConfigurationAndTargeting */,
 				5AF5E9B62E13580F002D80C1 /* PrebidMobileRendering */,
 				5AF5EA4F2E13580F002D80C1 /* PrivateHeaders */,
@@ -2547,6 +2568,7 @@
 		5AFCF3D42E133E4900998AED /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				3AFDF6412EC8078800FC7AA2 /* Nativo */,
 				FAEE4CDD262DC2B200AD9966 /* Constants.swift */,
 				FAEE4CE0262DC2B200AD9966 /* Dispatcher.swift */,
 				FAEE4CFD262DC2B200AD9966 /* ExternalUserId.swift */,
@@ -3732,6 +3754,7 @@
 				5AF5EADC2E13580F002D80C1 /* PBMORTBPmp.h in Headers */,
 				5AF5EADD2E13580F002D80C1 /* NSString+PBMExtensions.h in Headers */,
 				5AF5EADE2E13580F002D80C1 /* PBMExternalURLOpenCallbacks.h in Headers */,
+				3AFDF6452EC808D600FC7AA2 /* NativoBidRequester.h in Headers */,
 				5AF5EADF2E13580F002D80C1 /* PBMORTBAbstract+Protected.h in Headers */,
 				5AF5EAE02E13580F002D80C1 /* PBMUserConsentParameterBuilder.h in Headers */,
 				5AF5EAE12E13580F002D80C1 /* PBMORTBSourceExtOMID.h in Headers */,
@@ -4211,6 +4234,7 @@
 				5BC37AA8271F1D0000444D5E /* MediationRewardedAdUnit.swift in Sources */,
 				92AFC9C127F0E6A0002ECC1F /* NativeMarkupRequestObject.swift in Sources */,
 				92D8BEB22747B464006BD78E /* MediationConstants.swift in Sources */,
+				3AFDF6462EC808D600FC7AA2 /* NativoBidRequester.m in Sources */,
 				5A423CA42DBA4D9A008EE9EA /* ORTBRewardedCompletionBanner.swift in Sources */,
 				5A423C9E2DBA4B51008EE9EA /* ORTBRewardedReward.swift in Sources */,
 				FAEE4D08262DC2B200AD9966 /* Constants.swift in Sources */,

@@ -8,6 +8,7 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
@@ -32,6 +33,7 @@ typealias AdUnitConfigValidationBlock = (_ adUnitConfig: AdUnitConfig, _ renderW
     private let savedAdUnitConfig: AdUnitConfig
 
     var bidResponse: BidResponse?
+    var nativoBidResponse: BidResponse?
     var flowState: AdLoadFlowState = .idle
     private var bidRequestError: Error?
     private var bidRequester: BidRequesterProtocol?
@@ -161,7 +163,7 @@ typealias AdUnitConfigValidationBlock = (_ adUnitConfig: AdUnitConfig, _ renderW
         }
 
         delegate?.adLoadFlowControllerWillSendBidRequest(self)
-        sendBidRequest()
+        sendNativoBidRequest()
     }
 
     private func sendBidRequest() {
@@ -170,6 +172,23 @@ typealias AdUnitConfigValidationBlock = (_ adUnitConfig: AdUnitConfig, _ renderW
         bidRequester?.requestBids { [weak self ] response, error in
             self?.enqueueGatedBlock { [weak self] in
                 self?.handleBidResponse(response: response, error: error)
+            }
+        }
+    }
+
+    private func sendNativoBidRequest() {
+        flowState = .bidRequest
+
+        let nativoRequester: BidRequesterProtocol = Factory.createNativoBidRequester(
+            connection: PrebidServerConnection.shared,
+            sdkConfiguration: Prebid.shared,
+            targeting: Targeting.shared,
+            adUnitConfiguration: savedAdUnitConfig
+        )
+        nativoRequester.requestBids { [weak self] (nativoResponse: BidResponse?, _: Error?) in
+            self?.enqueueGatedBlock { [weak self] in
+                self?.nativoBidResponse = nativoResponse
+                self?.sendBidRequest()
             }
         }
     }
