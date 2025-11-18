@@ -3,11 +3,12 @@
 #import "PBMBidResponseTransformer.h"
 #import "PBMPrebidParameterBuilder.h"
 #import "PBMParameterBuilderService.h"
+#import "NativoParameterBuilder.h"
 #import "Log+Extensions.h"
 #import "SwiftImport.h"
 #import "PBMMacros.h"
 
-@interface NativoBidRequester ()
+@interface NativoBidRequester () <PBMBidRequester>
 
 @property (nonatomic, strong, nonnull, readonly) id<PrebidServerConnectionProtocol> connection;
 @property (nonatomic, strong, nonnull, readonly) Prebid *sdkConfiguration;
@@ -92,10 +93,13 @@
                                               sdkConfiguration:self.sdkConfiguration
                                                      targeting:self.targeting
                                               userAgentService:self.connection.userAgentService];
+    
+    // this will add tagid and any other needed params for Nativo
+    NativoParameterBuilder * nativoParamsBuilder = [[NativoParameterBuilder alloc] initWithAdConfiguration:self.adUnitConfiguration];
 
     NSDictionary<NSString *, NSString *> * const params =
     [PBMParameterBuilderService buildParamsDictWithAdConfiguration:self.adUnitConfiguration.adConfiguration
-                                           extraParameterBuilders:@[prebidParamsBuilder]];
+                                           extraParameterBuilders:@[prebidParamsBuilder, nativoParamsBuilder]];
 
     return params[@"openrtb"] ?: @"";
 }
